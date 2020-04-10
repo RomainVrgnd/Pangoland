@@ -27,4 +27,6 @@ router.post('/getFriends/:friendId', auth, ctrlProfile.addFriend);
 router.get('/myFriends', auth, ctrlProfile.myFriends);
 router.post('/myFriends/:friendId', auth, ctrlProfile.deleteFriend);
 
+router.post('/registerAndAdd', auth, ctrlAuth.registerAndAdd);
+
 module.exports = router;
