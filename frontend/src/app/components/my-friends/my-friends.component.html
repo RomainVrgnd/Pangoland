@@ -1,0 +1,32 @@
+<div class="container" style="margin-top: 100px;">
+    <!-- No data message -->
+    <p *ngIf="Friends?.length <= 0" class="no-data text-center">Tu ne suis personne pour le moment :'(</p>
+  
+    <!-- Pangolin list -->
+    <div *ngIf="Friends.length > 0">
+    <div class="text-center" style="font-weight:bold;">Abonnements</div>
+    <br />
+    <table class="table" >
+      <thead>
+        <th scope="col"></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let friend of Friends; let i = index">
+          <td style="text-align: right; font-weight:bold;">{{friend?.followed}} 
+          </td> 
+          <td style="text-align: left;" >
+            <button id="{{friend?.followed}}" type="button" class="btn btn-danger btn-sm" (click)="deleteFriend($event)">Unfollow</button>
+          
+        </td>
+  
+    <!-- 
+    <span class="delete" (click)="removeEmployee(employee, i)">
+      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+      <button id="{{friend?.name}}" type="button" class="btn btn-success btn-sm" (click)="addFriend($event)" >Suivre</button>
+    </span>-->
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>

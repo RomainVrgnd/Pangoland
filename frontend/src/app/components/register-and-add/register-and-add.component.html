@@ -1,0 +1,148 @@
+<div class="container" style="margin-top: 15px;">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 text-center">
+        <h1>Enregistrer un nouvel ami</h1>
+        
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <mat-label>Entre son nom</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="registerForm.controls['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Entre son adresse mail</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="registerForm.controls['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br /><br />
+          <mat-form-field>
+            <input matInput type="password" formControlName="password">
+            <mat-label>Entre son mot de passe</mat-label>
+            <mat-error *ngIf="registerForm.controls['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+          <!--
+          <mat-form-field>
+            <input matInput formControlName="other">
+            <mat-label>C'est juste pour être sûr !</mat-label>
+  
+            <mat-error *ngIf="this.registerForm.errors !== null && this.registerForm.errors.mismatch === true">{{comparePasswords()}}</mat-error>
+  
+            <mat-error *ngIf="registerForm.get('other').touched && registerForm.get('other').invalid ||
+            (!registerForm.get('other').pristine && registerForm.errors && registerForm.errors.mismatch)">{{getOtherErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />-->
+          <mat-form-field>
+            <mat-label>Quel âge a-t-il ?</mat-label>
+            <input matInput formControlName="age" type="number" min='0'>
+            <mat-error *ngIf="registerForm.controls['email'].invalid">{{getAgeErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>De quelle famille vient-il ?</mat-label>
+            <input matInput formControlName="famille">
+            <mat-error *ngIf="registerForm.controls['famille'].invalid">{{getFamilleErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Quelle est sa race ?</mat-label>
+            <input matInput formControlName="race">
+            <mat-error *ngIf="registerForm.controls['race'].invalid">{{getRaceErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Son plat préféré ?</mat-label>
+            <input matInput formControlName="food">
+            <mat-error *ngIf="registerForm.controls['food'].invalid">{{getFoodErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <br />
+            <button class="btn btn-primary" [disabled]="!registerForm.valid">Zéééé parti</button>
+            <br /><br /><br />
+        </form>
+      </div>
+    </div>
+  </div>
+  
+          <!--
+          <div class="form-group">
+            <label for="name">Ton nom</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Entre ton petit nom de pangolin"
+              formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+            />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Un nom est requis</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Adresse Mail</label>
+            <input
+              type="email"
+              placeholder="Entre ton adresse mail"formControlName="email" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Une adresse mail est requise</div>
+                  <div *ngIf="f.email.errors.email">Format non valide</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input
+              type="password"
+              placeholder="Choisi bien ton mot de passe !"
+              [(ngModel)]="credentials.password" formControlName="password"
+               class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Un mot de passe est requis</div>
+                  <div *ngIf="f.password.errors.minlength">Le mot de passe doit faire au moins 6 caractères</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label>Confirmation de ton mot de passe</label>
+            <input type="password" name="confirmPassword" class="form-control"
+              placeholder="C'est juste pour être sûr!"
+             />
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" 
+              placeholder="Quel âge as-tu ? (Promis, on ne le répètera à personne)"
+              min='0' formControlName="age" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+              />
+              <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                <div *ngIf="f.age.errors.required">Age requis</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="famille">Famille</label>
+            <input type="text" class="form-control"  placeholder="De quelle famille es-tu originaire ?"
+            formControlName="famille" [ngClass]="{ 'is-invalid': submitted && f.famille.errors }"
+            />
+            <div *ngIf="submitted && f.famille.errors" class="invalid-feedback">
+              <div *ngIf="f.famille.errors.required">Une famille est requise</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="race">Race</label>
+            <input type="text" class="form-control"  placeholder="De quelle race viens-tu ?"
+            formControlName="race" [ngClass]="{ 'is-invalid': submitted && f.race.errors }"
+            />
+            <div *ngIf="submitted && f.race.errors" class="invalid-feedback">
+              <div *ngIf="f.race.errors.required">Une race est requis</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="food">Nourriture favorite</label>
+            <input type="text" class="form-control" placeholder="Quel est ton aliment préféré ?"
+            formControlName="food" [ngClass]="{ 'is-invalid': submitted && f.food.errors }"
+            />
+            <div *ngIf="submitted && f.food.errors" class="invalid-feedback">
+              <div *ngIf="f.food.errors.required">Un aliment est requis</div>
+          </div>
+          </div>
+  
+        -->
+  
